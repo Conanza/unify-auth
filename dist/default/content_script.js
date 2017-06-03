@@ -32,15 +32,18 @@ window.colorDetectFields = function() {
 };
 
 window.triggerObtainValues = function() {
-  let result = window.obtainFieldsValues();
-  console.log(result);
-  if (!result.username) {
-    alert('No Username retrieved');
-    return;
-  }
-  if(!result.password) {
-    alert('No password retrieved');
-    return;
-  }
-  alert('Username: '+result.username+'; Password: '+result.password);
+  // let result = window.obtainFieldsValues();
+
+  $.when(window.obtainFieldsValues()).then(result => {
+    console.log(result);
+    if (!result.username) {
+      alert('No Username retrieved');
+      return;
+    }
+    if(!result.password) {
+      alert('No password retrieved');
+      return;
+    }
+    alert('Username: '+result.username+'; Password: '+result.password);
+  });
 };

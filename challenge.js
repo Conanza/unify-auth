@@ -130,9 +130,11 @@ window.obtainFieldsValues = function() {
   //
   // XXX: Modify this code, if necessary, to work on more sites.
   //
-  return {
-    username: getUsernameField().val(),
-    password: getPasswordField().val()
-  };
+  return $.when(getUsernameField(), getPasswordField()).then((user, pw) => {
 
+    return {
+      username: user.val(),
+      password: pw.val()
+    };
+  });
 };
