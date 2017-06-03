@@ -29,23 +29,33 @@ function determineSite() {
     ids.username = "#email";
   }
 
-  return ids;
+  return $.when(ids);
 }
 
 function getUsernameField() {
-  return $(determineSite().username);
+  return determineSite().then(ids => {
+    return $(ids.username);
+  });
 }
 
 function getPasswordField() {
-  return $(determineSite().password);
+  return determineSite().then(ids => {
+    return $(ids.password);
+  });
 }
 
 function getFormField() {
-  return getUsernameField().closest('form'); // fb, paypal, boa
+  return getUsernameField().then(usernameField => usernameField.closest('form'));
 }
 
 function getSubmitButton() {
-  return $(determineSite().button);
+  return determineSite().then(ids => {
+    return $(ids.button);
+  });
+}
+
+function redirectSite() {
+
 }
 
 /**
@@ -90,13 +100,19 @@ window.detectFormFields = function() {
   //
   // XXX: Modify this code, if necessary, to work on more sites.
   //
-  return {
-    form: getFormField(),
-    submitButton: getSubmitButton(),
-    username: getUsernameField(),
-    password: getPasswordField()
-  };
-
+  return $.when(
+    getFormField(),
+    getSubmitButton(),
+    getUsernameField(),
+    getPasswordField()
+  ).then((form, btn, user, pw) => {
+    return {
+      form: form,
+      submitButton: btn,
+      username: user,
+      password: pw
+    };
+  });
 };
 
 /**
