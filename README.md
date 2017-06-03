@@ -3,6 +3,12 @@ The challenge is to be able to do the following actions in a given website:
  * Find the form elements in the dom.
  * Obtain the values from the login elements in the dom.
 
+# Solution
+
+Facebook, BOA, and CITI had full login forms on the landing page, so I solved this with a brute force method by implementing a switch case based on the url and hardcoded the respective element ids to find for each field.
+
+WIP: IG, Yahoo, and PayPal landing pages don't immediately have login form/fields, so I'm thinking of redirecting to the right page first. I thought I'd do this by promise chaining, but more research needs to be done about how to persist this across page refreshes.
+
 # Load The Extension
 
 1. Go to 'chrome://extensions' in your chrome browser.
