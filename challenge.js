@@ -6,20 +6,46 @@
  * Some utility functions that may or may not be useful.
  * Feel free to modify these.
  */
+function determineSite() {
+  let host = window.location.hostname;
+  let ids = {};
+
+  if (host.match('paypal.com')) {
+    ids.password = "#password";
+    ids.username = "#email";
+  } else if (host.match('instagram.com')) {
+  } else if (host.match('bankofamerica.com')) {
+    ids.button = "#hp-sign-in-btn";
+    ids.password = "#passcode1";
+    ids.username = "#onlineId1";
+  } else if (host.match('citi.com')) {
+    ids.button = "#signInBtn";
+    ids.password = "#password";
+    ids.username = "#usernameMasked";
+  } else if (host.match('yahoo.com')) {
+  } else if (host.match('facebook.com')) {
+    ids.button = "#loginbutton";
+    ids.password = "#pass";
+    ids.username = "#email";
+  }
+
+  return ids;
+}
+
 function getUsernameField() {
-  return $("#email");
+  return $(determineSite().username);
 }
 
 function getPasswordField() {
-  return $("#pass");
+  return $(determineSite().password);
 }
 
 function getFormField() {
-  return getUsernameField().closest('form');
+  return getUsernameField().closest('form'); // fb, paypal, boa
 }
 
 function getSubmitButton() {
-  return $("#loginbutton");
+  return $(determineSite().button);
 }
 
 /**
@@ -32,7 +58,12 @@ function getSubmitButton() {
 window.loginWithCredentials = function(username, password) {
 
   //
-  // XXX: Modify this code, if necessary, to work on more sites.
+  // XXX: Modify this code, if necessary, to work on more sites:
+  // https://www.paypal.com - password field id = #password
+  // https://www.instagram.com
+  // https://www.bankofamerica.com
+  // https://www.citi.com
+  // https://www.yahoo.com
   //
   let usernameField = getUsernameField();
   let passwordField = getPasswordField();
