@@ -78,13 +78,14 @@ window.loginWithCredentials = function(username, password) {
   let usernameField = getUsernameField();
   let passwordField = getPasswordField();
 
-  usernameField.val(username);
-  passwordField.val(password);
+  $.when(usernameField, passwordField).then((user, pw) => {
+    user.val(username);
+    pw.val(password);
 
-  setTimeout(() => {
-  	getSubmitButton().click();
-  }, 1000);
-
+    setTimeout(() => {
+      getSubmitButton().then(btn => btn.click());
+    }, 1000);
+  });
 };
 
 
