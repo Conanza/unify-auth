@@ -1,0 +1,51 @@
+{
+  "manifest_version": 2,
+  "name": "Challenge",
+  "version": "0.0.1",
+  "description": "UnifyID Detection Challenge",
+  "icons": {
+      "16": "/dist/assets/lock16.png",
+      "48": "/dist/assets/lock48.png",
+      "128": "/dist/assets/lock128.png"
+  },
+  "browser_action": {
+    "default_icon": "/dist/assets/unifyid.png",
+    "default_popup": "/dist/assets/browser_action.html",
+    "default_title": "Form Submition Trigger"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "/dist/assets/jquery.min.js",
+        "/dist/default/content_script.js",
+        "challenge.js"
+      ],
+      "run_at": "document_end",
+      "all_frames": true
+    }
+  ],
+  "background": {
+    "scripts": [
+      "/dist/assets/jquery.min.js",
+      "/dist/default/background_script.js",
+      "background.js"
+    ],
+    "persistent": false
+  },
+  "web_accessible_resources": [
+    "/dist/*",
+    "index.html",
+    "challenge.js"
+  ],
+  "permissions": [
+    "activeTab",
+    "storage",
+    "tabs",
+    "http://*/*",
+    "https://*/*"
+  ]
+}

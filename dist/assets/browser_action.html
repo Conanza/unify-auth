@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>UnifyID</title>
+        <style type="text/css">
+          ul {
+              padding: 0px;
+              /* margin: 0px; */
+              width: 100px;
+              /* height: 100px; */
+              margin: 20px;
+              list-style: non;
+              list-style: none;
+          }
+          li {
+            margin: 10px 0px 10px 0px;
+            background-color: #a7efff;
+            height: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+          }
+          li:hover {
+            background: #58c6df;
+          }
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript" src="/dist/assets/jquery.min.js"></script>
+        <script type="text/javascript" src="/dist/default/browser_action.js"></script>
+        <ul>
+          <li id="detectFields">Detect Fields</li>
+          <li id="login">Login</li>
+          <li id="obtainValues">Get Form Values</li>
+        </ul>
+    </body>
+</html>
